@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="es-ES">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>El Ahorcado - Estética & Puntuación</title>
+  <!-- Tailwind CSS via CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-slate-950 min-h-screen text-slate-100 font-sans flex flex-col items-center justify-center p-4">
+
+  <!-- Carte principale responsive -->
+  <div class="w-full max-w-2xl bg-slate-900/90 backdrop-blur-xl rounded-3xl shadow-2xl border border-slate-800 p-6 sm:p-8 text-center space-y-6">
+    
+    <!-- En-tête avec affichage de la Puntuación -->
+    <header class="border-b border-slate-800 pb-4 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div class="text-left">
+        <h1 class="text-2xl sm:text-3xl font-black text-transparent bg-clip-text bg-gradient-to-r from-fuchsia-400 to-indigo-400 uppercase">
+          Juego del Ahorcado
+        </h1>
+        <p class="text-xs text-slate-400">Puntuación: <span id="puntuacion" class="text-fuchsia-400 font-bold text-sm">0</span> pts</p>
+      </div>
+      <button id="btn-empezar" class="px-6 py-2.5 bg-gradient-to-r from-purple-600 to-fuchsia-600 hover:from-purple-500 hover:to-fuchsia-500 active:scale-95 text-white font-bold rounded-xl shadow-lg transition-all duration-150">
+        Empezar / Reiniciar
+      </button>
+    </header>
+
+    <main class="space-y-6">
+      <!-- Zone du mot masqué/découvert -->
+      <div id="palabra" class="flex flex-wrap justify-center gap-2 min-h-[60px] items-center">
+        <span class="text-slate-400 font-mono text-sm uppercase tracking-widest">Presiona "Empezar" para jugar</span>
+      </div>
+
+      <!-- Dessin SVG du pendu et Erreurs -->
+      <div id="errores" class="flex flex-col items-center justify-center">
+        <div class="bg-slate-950 p-4 rounded-2xl border border-purple-500/20 shadow-inner">
+          <svg id="svg-ahorcado" width="180" height="220" viewBox="0 0 200 250" class="mx-auto">
+            <!-- Potence -->
+            <line x1="10" y1="240" x2="150" y2="240" stroke="currentColor" stroke-width="4" class="text-purple-400/80" />
+            <line x1="40" y1="240" x2="40" y2="20" stroke="currentColor" stroke-width="4" class="text-purple-400/80" />
+            <line x1="40" y1="20" x2="120" y2="20" stroke="currentColor" stroke-width="4" class="text-purple-400/80" />
+            <line x1="120" y1="20" x2="120" y2="50" stroke="currentColor" stroke-width="4" class="text-purple-400/80" />
+
+            <!-- Parties du corps -->
+            <circle id="cabeza" class="parte-cuerpo hidden text-fuchsia-400" cx="120" cy="70" r="20" stroke="currentColor" stroke-width="4" fill="none" />
+            <line id="tronco" class="parte-cuerpo hidden text-fuchsia-400" x1="120" y1="90" x2="120" y2="150" stroke="currentColor" stroke-width="4" />
+            <line id="brazo-izq" class="parte-cuerpo hidden text-fuchsia-400" x1="120" y1="110" x2="90" y2="130" stroke="currentColor" stroke-width="4" />
+            <line id="brazo-der" class="parte-cuerpo hidden text-fuchsia-400" x1="120" y1="110" x2="150" y2="130" stroke="currentColor" stroke-width="4" />
+            <line id="pierna-izq" class="parte-cuerpo hidden text-fuchsia-400" x1="120" y1="150" x2="90" y2="190" stroke="currentColor" stroke-width="4" />
+            <line id="pierna-der" class="parte-cuerpo hidden text-fuchsia-400" x1="120" y1="150" x2="150" y2="190" stroke="currentColor" stroke-width="4" />
+          </svg>
+        </div>
+
+        <h3 class="text-sm font-bold uppercase tracking-wider text-slate-400 mt-4">
+          Número de Errores: <span id="error" class="text-fuchsia-400 font-extrabold text-base">0/6</span>
+        </h3>
+        
+        <div id="mensaje" class="text-base sm:text-lg font-bold mt-2 min-h-[28px]"></div>
+      </div>
+    </main>
+
+    <!-- Clavier virtuel interactif -->
+    <footer id="teclado" class="bg-slate-950/60 p-3 sm:p-4 rounded-2xl border border-slate-800 shadow-inner flex flex-col items-center"></footer>
+
+  </div>
+
+  <!-- Enlace al archivo JS externe -->
+  <script src="palabras.js"></script>
+</body>
+
+</html>
